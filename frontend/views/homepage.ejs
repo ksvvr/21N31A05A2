@@ -4,18 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Z Mart Home</title>
 </head>
 
 <body class="text-center">
     <div class="mainDiv">
-        
         <h1>Welcome to Z Mart</h1>
-        
-        
+        <button id="fetchProducts" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Fetch Products</button>
     </div>
+
+    <script>
+        document.getElementById('fetchProducts').addEventListener('click', () => {
+            const companyname = 'AMZ';
+            const categoryname = 'Phone';
+            const top = 10;
+            const minPrice = 100;
+            const maxPrice = 500;
+
+            var url = 'http://20.244.56.144/test/companies/exampleCompany/categories/exampleCategory/products?top=10&minPrice=100&maxPrice=500';
+            url='http://20.244.56.144/test/companies/AMZ/categories/Laptop/products?top=10&minPrice=1&maxPrice=1111111111';
+
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzIzODc3OTIyLCJpYXQiOjE3MjM4Nzc2MjIsImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6IjBhYWM0YjM5LTY5YTAtNDQ2MS1iMzQ3LWIwOWM5M2YyMzUwNyIsInN1YiI6ImtzdnZyZWRkeUBnbWFpbC5jb20ifSwiY29tcGFueU5hbWUiOiJaIE1hcnQiLCJjbGllbnRJRCI6IjBhYWM0YjM5LTY5YTAtNDQ2MS1iMzQ3LWIwOWM5M2YyMzUwNyIsImNsaWVudFNlY3JldCI6ImJ2Tmx2eldjdGdOYWRPeHciLCJvd25lck5hbWUiOiJLYW5rYXJhIFNhaSBWaXNobnUgVmFyZGhhbiBSZWRkeSIsIm93bmVyRW1haWwiOiJrc3Z2cmVkZHlAZ21haWwuY29tIiwicm9sbE5vIjoiMjFOMzFBMDVBMiJ9.rPl_sbcbGQ-xwBXXuAYuTzUOUOpq3ggmcz6qki6xkpc',
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        });
+    </script>
 </body>
 
 </html>
